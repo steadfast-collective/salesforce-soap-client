@@ -14,7 +14,8 @@ class BulkSaverTest extends \PHPUnit_Framework_TestCase
         $client
             ->expects($this->exactly(3))
             ->method('create')
-            ->with($this->isType('array'), $this->equalTo('Account'));
+            ->with($this->isType('array'), $this->equalTo('Account'))
+            ->willReturn([]);
 
         $bulkSaver = new BulkSaver($client);
 
@@ -33,7 +34,8 @@ class BulkSaverTest extends \PHPUnit_Framework_TestCase
         $client
             ->expects($this->exactly(2))
             ->method('update')
-            ->with($this->isType('array'), $this->equalTo('Account'));
+            ->with($this->isType('array'), $this->equalTo('Account'))
+            ->willReturn([]);
 
         $bulkSaver = new BulkSaver($client);
 
@@ -58,11 +60,13 @@ class BulkSaverTest extends \PHPUnit_Framework_TestCase
         $client = $this->getClient();
         $client->expects($this->at(0))
             ->method('delete')
-            ->with(range(1, 200));
+            ->with(range(1, 200))
+            ->willReturn([]);
 
         $client->expects($this->at(1))
             ->method('delete')
-            ->with(range(201, 202));
+            ->with(range(201, 202))
+            ->willReturn([]);
 
         $bulkSaver = new BulkSaver($client);
         foreach ($tasks as $task) {
@@ -86,7 +90,8 @@ class BulkSaverTest extends \PHPUnit_Framework_TestCase
         $client = $this->getClient();
         $client->expects($this->exactly(2))
             ->method('upsert')
-            ->with('Name', $this->isType('array'), 'Account');
+            ->with('Name', $this->isType('array'), 'Account')
+            ->willReturn([]);
 
         $account = new \stdClass();
         $account->Name = 'Upsert this';
@@ -96,12 +101,6 @@ class BulkSaverTest extends \PHPUnit_Framework_TestCase
         for ($i = 0; $i < 201; $i++) {
             $bulkSaver->save($account, 'Account', 'Name');
         }
-        $bulkSaver->flush();
-    }
-
-    public function testFlushEmpty()
-    {
-        $bulkSaver = new BulkSaver($this->getClient());
         $bulkSaver->flush();
     }
 
