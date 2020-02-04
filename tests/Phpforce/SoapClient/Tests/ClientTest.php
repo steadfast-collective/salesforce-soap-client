@@ -185,8 +185,7 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
 
         $dispatcher
             ->expects($this->at(1))
-            ->method('dispatch')
-            ->with('phpforce.soap_client.response');
+            ->method('dispatch');
 
 //        $dispatcher
 //            ->expects($this->at(2))

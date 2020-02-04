@@ -48,6 +48,10 @@ class BulkSaver implements BulkSaverInterface
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
+        $this->results['created'] = [];
+        $this->results['deleted'] = [];
+        $this->results['updated'] = [];
+        $this->results['upserted'] = [];
     }
 
     /**
