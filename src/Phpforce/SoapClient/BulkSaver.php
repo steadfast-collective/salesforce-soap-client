@@ -38,21 +38,26 @@ class BulkSaver implements BulkSaverInterface
     private $bulkUpdateRecords = array();
     private $bulkUpsertRecords = array();
     private $bulkUpsertMatchFields = array();
+    private $results = [];
 
     /**
      * Construct bulk saver
      *
-     * @param Client $client        Salesforce client
+     * @param Client $client Salesforce client
      */
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
+        $this->results['created'] = [];
+        $this->results['deleted'] = [];
+        $this->results['updated'] = [];
+        $this->results['upserted'] = [];
     }
 
     /**
      * Save a record in bulk
      *
-     * @param mixed  $record
+     * @param mixed $record
      * @param string $objectType The record type, e.g., Account
      * @param string $matchField Optional match field for upserts
      *
@@ -92,31 +97,29 @@ class BulkSaver implements BulkSaverInterface
      */
     public function flush()
     {
-        $results = array();
-
         if (count($this->bulkDeleteRecords) > 0) {
-            $results['deleted'] = $this->flushDeletes();
+            $this->results['deleted'] = array_merge($this->results['deleted'], $this->flushDeletes());
         }
 
         foreach ($this->bulkCreateRecords as $type => $objects) {
             if (count($objects) > 0) {
-                $results['created'] = $this->flushCreates($type);
+                $this->results['created'] = array_merge($this->results['created'], $this->flushCreates($type));
             }
         }
 
         foreach ($this->bulkUpdateRecords as $type => $objects) {
             if (count($objects) > 0) {
-                $results['updated'] = $this->flushUpdates($type);
+                $this->results['updated'] = array_merge($this->results['updated'], $this->flushUpdates($type));
             }
         }
 
         foreach ($this->bulkUpsertRecords as $type => $objects) {
             if (count($objects) > 0) {
-                $results['upserted'] = $this->flushUpserts($type);
+                $this->results['upserted'] = array_merge($this->results['upserted'], $this->flushUpserts($type));
             }
         }
 
-        return $results;
+        return $this->results;
     }
 
     /**
@@ -172,7 +175,7 @@ class BulkSaver implements BulkSaverInterface
     {
         if (isset($this->bulkCreateRecords[$objectType])
             && count($this->bulkCreateRecords[$objectType]) == $this->bulkSaveLimit) {
-            $this->flushCreates($objectType);
+            $this->results['created'] = array_merge($this->results['created'], $this->flushCreates($objectType));
         }
 
         $this->bulkCreateRecords[$objectType][] = $record;
@@ -188,7 +191,7 @@ class BulkSaver implements BulkSaverInterface
     private function addBulkDeleteRecord($record)
     {
         if ($this->bulkDeleteLimit === count($this->bulkDeleteRecords)) {
-            $this->flushDeletes();
+            $this->results['deleted'] = array_merge($this->results['deleted'], $this->flushDeletes());
         }
 
         $this->bulkDeleteRecords[] = $record;
@@ -204,7 +207,7 @@ class BulkSaver implements BulkSaverInterface
     {
         if (isset($this->bulkUpdateRecords[$objectType])
             && count($this->bulkUpdateRecords[$objectType]) == $this->bulkSaveLimit) {
-            $this->flushUpdates($objectType);
+            $this->results['updated'] = array_merge($this->results['updated'], $this->flushUpdates($objectType));
         }
 
         $this->bulkUpdateRecords[$objectType][] = $sObject;
@@ -222,7 +225,7 @@ class BulkSaver implements BulkSaverInterface
 
         if (isset($this->bulkUpsertRecords[$objectType])
             && count($this->bulkUpsertRecords[$objectType]) == $this->bulkSaveLimit) {
-            $this->flushUpserts($objectType);
+            $this->results['upserted'] = array_merge($this->results['upserted'], $this->flushUpserts($objectType));
         }
 
         $this->bulkUpsertRecords[$objectType][] = $sObject;

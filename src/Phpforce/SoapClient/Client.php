@@ -9,7 +9,6 @@ use Phpforce\SoapClient\Exception;
 
 /**
  * A client for the Salesforce SOAP API
- *
  * @author David de Boer <david@ddeboer.nl>
  */
 class Client extends AbstractHasDispatcher implements ClientInterface
@@ -553,14 +552,14 @@ class Client extends AbstractHasDispatcher implements ClientInterface
         // Prepare headers
         $this->soapClient->__setSoapHeaders($this->getSessionHeader());
 
-        $requestEvent = new Event\RequestEvent($method, $params);
-        $this->dispatch(Events::REQUEST, $requestEvent);
+//        $requestEvent = new Event\RequestEvent($method, $params);
+//        $this->dispatch(Events::REQUEST, $requestEvent);
 
         try {
             $result = $this->soapClient->$method($params);
         } catch (\SoapFault $soapFault) {
-            $faultEvent = new Event\FaultEvent($soapFault, $requestEvent);
-            $this->dispatch(Events::FAULT, $faultEvent);
+//            $faultEvent = new Event\FaultEvent($soapFault, $requestEvent);
+//            $this->dispatch(Events::FAULT, $faultEvent);
 
             throw $soapFault;
         }
@@ -570,10 +569,10 @@ class Client extends AbstractHasDispatcher implements ClientInterface
             return array();
         }
 
-        $this->dispatch(
-            Events::RESPONSE,
-            new Event\ResponseEvent($requestEvent, $result->result)
-        );
+//        $this->dispatch(
+//            Events::RESPONSE,
+//            new Event\ResponseEvent($requestEvent, $result->result)
+//        );
 
         return $result->result;
     }

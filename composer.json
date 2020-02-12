@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=7.2",
-        "comsave/common": "^0.1.4",
+        "comsave/common": "^0.1.6",
         "psr/log": "^1.0"
     },
     "require-dev": {
