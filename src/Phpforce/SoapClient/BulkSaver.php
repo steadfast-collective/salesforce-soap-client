@@ -304,6 +304,9 @@ class BulkSaver implements BulkSaverInterface
         $this->bulkDeleteRecords = [];
         $this->bulkUpdateRecords = [];
         $this->bulkUpsertRecords = [];
-        $this->results = [];
+        $this->results['created'] = [];
+        $this->results['deleted'] = [];
+        $this->results['updated'] = [];
+        $this->results['upserted'] = [];
     }
 }
