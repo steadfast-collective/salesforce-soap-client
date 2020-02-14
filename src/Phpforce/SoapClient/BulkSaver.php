@@ -119,6 +119,7 @@ class BulkSaver implements BulkSaverInterface
             }
         }
 
+
         return $this->results;
     }
 
@@ -292,5 +293,17 @@ class BulkSaver implements BulkSaverInterface
         $this->bulkUpsertRecords[$objectType] = array();
 
         return $result;
+    }
+
+    /**
+     * Clears the results and the records of the bulk saver.
+     */
+    public function clear()
+    {
+        $this->bulkCreateRecords = [];
+        $this->bulkDeleteRecords = [];
+        $this->bulkUpdateRecords = [];
+        $this->bulkUpsertRecords = [];
+        $this->results = [];
     }
 }
