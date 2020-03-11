@@ -7,13 +7,14 @@ use Phpforce\SoapClient\Request;
 use Phpforce\SoapClient\Result;
 use Phpforce\SoapClient\Event;
 use Phpforce\SoapClient\Result\LoginResult;
+use PHPUnit\Framework\TestCase;
 use \ReflectionClass;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     public function testDelete()
     {
-        $deleteResult = $this->createMock(new Result\DeleteResult(), array(
+        $deleteResult = $this->createObjectMock(new Result\DeleteResult(), array(
             'id' => '001M0000008tWTFIA2',
             'success' => true
         ));
@@ -76,13 +77,13 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
 
     public function testInvalidUpdateResultsInError()
     {
-        $error = $this->createMock(new Result\Error(), array(
+        $error = $this->createObjectMock(new Result\Error(), array(
             'fields' => array('Id'),
             'message' => 'Account ID: id value of incorrect type: 001M0000008tWTFIA3',
             'statusCode' => 'MALFORMED_ID'
         ));
 
-        $saveResult = $this->createMock(new Result\SaveResult(), array(
+        $saveResult = $this->createObjectMock(new Result\SaveResult(), array(
             'errors' => array($error),
             'success' => false
         ));
@@ -124,7 +125,7 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
         $mergeRequest->masterRecord = $masterRecord;
         $mergeRequest->recordToMergeIds = array('001M0000008uw8JIAQ');
 
-        $mergeResult = $this->createMock(new Result\MergeResult(), array(
+        $mergeResult = $this->createObjectMock(new Result\MergeResult(), array(
             'id' => '001M0000007UvSjIAK',
             'mergedRecordIds' => array('001M0000008uw8JIAQ'),
             'success' => true
@@ -145,13 +146,13 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
     {
         $response = new \stdClass();
 
-        $error = $this->createMock(new Result\Error(), array(
+        $error = $this->createObjectMock(new Result\Error(), array(
             'fields' => array('Id'),
             'message' => 'Account ID: id value of incorrect type: 001M0000008tWTFIA3',
             'statusCode' => 'MALFORMED_ID'
         ));
 
-        $saveResult = $this->createMock(new Result\SaveResult(), array(
+        $saveResult = $this->createObjectMock(new Result\SaveResult(), array(
             'errors' => array($error),
             'success' => false
         ));
@@ -240,7 +241,7 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
         return $this;
     }
 
-    protected function createMock($object, array $values = array())
+    protected function createObjectMock($object, array $values = array())
     {
         foreach ($values as $key => $value) {
             $this->setProperty($object, $key, $value);
@@ -251,7 +252,7 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
 
     protected function getResultMock($object, array $values = array())
     {
-        $mock = $this->createMock($object, $values);
+        $mock = $this->createObjectMock($object, $values);
 
         $result = new \stdClass();
         $result->result = $mock;
