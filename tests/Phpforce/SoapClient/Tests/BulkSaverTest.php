@@ -9,7 +9,7 @@ class BulkSaverTest extends TestCase
 {
     public function testCreate()
     {
-        $client = $this->getClient();
+        $client = $this->createMock(Client::class);
 
         $client
             ->expects($this->exactly(3))
@@ -29,7 +29,7 @@ class BulkSaverTest extends TestCase
 
     public function testUpdate()
     {
-        $client = $this->getClient();
+        $client = $this->createMock(Client::class);
 
         $client
             ->expects($this->exactly(2))
@@ -57,7 +57,7 @@ class BulkSaverTest extends TestCase
             $tasks[] = $task;
         }
 
-        $client = $this->getClient();
+        $client = $this->createMock(Client::class);
         $client->expects($this->at(0))
             ->method('delete')
             ->with(range(1, 200))
@@ -77,7 +77,7 @@ class BulkSaverTest extends TestCase
 
     public function testDeleteWithoutIdThrowsException()
     {
-        $client = $this->getClient();
+        $client = $this->createMock(Client::class);
         $bulkSaver = new BulkSaver($client);
         $invalidRecord = new \stdClass();
         $this->expectException('\InvalidArgumentException');
@@ -87,7 +87,7 @@ class BulkSaverTest extends TestCase
 
     public function testUpsert()
     {
-        $client = $this->getClient();
+        $client = $this->createMock(Client::class);
         $client->expects($this->exactly(2))
             ->method('upsert')
             ->with('Name', $this->isType('array'), 'Account')
@@ -102,10 +102,5 @@ class BulkSaverTest extends TestCase
             $bulkSaver->save($account, 'Account', 'Name');
         }
         $bulkSaver->flush();
-    }
-
-    protected function getClient()
-    {
-        return $this->createMock(Client::class);
     }
 }
