@@ -207,6 +207,7 @@ class Client extends AbstractHasDispatcher implements ClientInterface
      */
     public function doLogin($username, $password, $token)
     {
+        $this->soapClient->__setSoapHeaders();
         $result = $this->soapClient->login(
             array(
                 'username' => $username,
@@ -562,8 +563,8 @@ class Client extends AbstractHasDispatcher implements ClientInterface
 //            $this->dispatch(Events::FAULT, $faultEvent);
 
             if (strpos($soapFault->getMessage(), 'INVALID_SESSION_ID') !== false) {
-                $this->doLogin($this->username, $this->password, $this->token);
                 try {
+                    $this->doLogin($this->username, $this->password, $this->token);
                     $this->soapClient->__setSoapHeaders($this->getSessionHeader());
                     $result = $this->soapClient->$method($params);
                 } catch (\SoapFault $soapFault) {
