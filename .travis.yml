@@ -11,7 +11,15 @@ script:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=7241670bd5135dbe5b4f24790815fcc50ac9e26b3f1a78227d2547f6cdf01ec1
+    - CC_TEST_REPORTER_ID=
+    - SYMFONY_VERSION=^4.4
+
+matrix:
+  include:
+      - php: 7.3
+        env: SYMFONY_VERSION=^5.2
+      - php: 7.4
+        env: SYMFONY_VERSION=^5.2
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -22,6 +30,6 @@ after_script:
   - mv Tests/_output/coverage.xml clover.xml
   - ./cc-test-reporter after-build --coverage-input-type clover --id $CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT
 
-notifications:
-  slack:
-    secure: icDPwSB86zK/wXeLKHua3mRGXqpghDHJA9mMOg26nRhZY+XaUoIgJazzF468yw9vAo7TU0gSu33z2UgE5capmqrnJCfv0nbSm/zK8AS6bwn+EB6JqbacJUwtCOZGYtnRZIVr5KIhqFEnRE2PTBahjn/tP0q530r6qB73eSO9ndoYS9g58V0dw1ML6G+WD40/EbiQfiaEh+uD44gS39IbSKEblspjkA+OHBAZWmwE78s1vp+LiwDtdu+vbihhipYdGMcM2O8K7QDNIIgGRfkz3o9knsgJMZN+HVsA3DQz+TSXMAr6+TFTF/6SXh3EeLz7NxFYdbuS2ruPGRMQZjUdsXOCnpKIiG8DGjTihI52R5Ie88jlLIccEkfvDsrDLBy9Kc7Own0q9Gpfuo+rRX1iQ5Fb40cNI4SlZzXIAAJYPs/asPf3cIwXCx+FsabI/yLeZRbaszwduGupQhsr4CQNT99FK5VInEfC7ExW1XR5pUJJioKg8Td8z85seVPetKM2qtj5u6vezypGcXCSXidqSexN/A5OyKVs6Ak34EHH0DGvNxRH0dST2BP3rAswx3moINv1vF4Cl5+MwQreUVPKl2HUX2MHq9X/OaLCGcnlXrHUDTD2hR4/lYJlFOn8p+nVBoprj/K8TRgEuJKGfU6/V+7myndZrl2oKQs7mJPaSFQ=
+# notifications:
+#   slack:
+#     secure: 
