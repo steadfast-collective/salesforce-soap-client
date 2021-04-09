@@ -1,5 +1,5 @@
 {
-    "name": "comsave/soap-client",
+    "name": "php-arsenal/soap-client",
     "type": "library",
     "description": "A PHP client for the Salesforce SOAP API",
     "keywords": [ "salesforce", "crm", "soap", "force.com", "web services" ],
@@ -28,17 +28,6 @@
         "run-coverage": "vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover Tests/_output/coverage.xml",
         "run-coverage-text": "vendor/bin/phpunit -c phpunit.xml.dist --coverage-text=Tests/_output/coverage.txt && cat Tests/_output/coverage.txt"
     },
-    "authors": [
-        {
-            "name": "David de Boer",
-            "email": "david@ddeboer.nl",
-            "homepage": "http://ddeboer.nl"
-        },
-        {
-            "name": "Vaidas Bagdonas",
-            "email": "vaidas.bagdonas@comsave.com"
-        }
-    ],
     "config": {
         "sort-packages": true
     }

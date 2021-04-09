@@ -1,9 +1,9 @@
 A PHP client for the Salesforce SOAP API
 ==============================================================
 
-[![Release](https://img.shields.io/github/v/release/comsave/soap-client)](https://github.com/comsave/soap-client/releases)
-[![Travis](https://img.shields.io/travis/comsave/soap-client)](https://travis-ci.org/comsave/soap-client)
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/comsave/soap-client)](https://codeclimate.com/github/comsave/soap-client)
+[![Release](https://img.shields.io/github/v/release/php-arsenal/soap-client)](https://github.com/php-arsenal/soap-client/releases)
+[![Travis](https://img.shields.io/travis/php-arsenal/soap-client)](https://travis-ci.org/php-arsenal/soap-client)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/php-arsenal/soap-client)](https://codeclimate.com/github/php-arsenal/soap-client)
 
 Introduction
 ------------
@@ -26,7 +26,7 @@ This library’s features include the following.
   creates, deletes, updates and upserts.
 * Completely unit tested (still working on that one).
 * Use the client in conjunction with the Symfony2
-  [Mapper Bundle](https://github.com/comsave/salesforce-mapper-bundle)
+  [Mapper Bundle](https://github.com/php-arsenal/salesforce-mapper-bundle)
   to get even easier access to your Salesforce data.
 
 Installation
@@ -36,7 +36,7 @@ This library is available on [Packagist](http://packagist.org/packages/phpforce/
 The recommended way to install this library is through [Composer](http://getcomposer.org):
 
 ```bash
-$ composer require comsave/soap-client
+$ composer require php-arsenal/soap-client
 ```
 
 Usage
