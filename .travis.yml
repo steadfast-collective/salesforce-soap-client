@@ -14,6 +14,7 @@ env:
     - CC_TEST_REPORTER_ID=5a0675c64aee45f003a089cf9df4257a7c23995b969d7511dba70b11398b6cd8
 
 before_script:
+  - echo "extension = xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
