@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=7.2",
-        "comsave/common": "^0.1.6",
+        "symfony/event-dispatcher": "*",
         "psr/log": "^1.0"
     },
     "require-dev": {
