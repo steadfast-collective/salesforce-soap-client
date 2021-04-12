@@ -24,20 +24,14 @@ This library’s features include the following.
   is easy through the record iterator.
 * The BulkSaver helps you stay within your Salesforce API limits by using bulk
   creates, deletes, updates and upserts.
-* Completely unit tested (still working on that one).
-* Use the client in conjunction with the Symfony2
+* Use the client in conjunction with the Symfony
   [Mapper Bundle](https://github.com/php-arsenal/salesforce-mapper-bundle)
   to get even easier access to your Salesforce data.
 
 Installation
 ------------
 
-This library is available on [Packagist](http://packagist.org/packages/phpforce/soap-client). 
-The recommended way to install this library is through [Composer](http://getcomposer.org):
-
-```bash
-$ composer require php-arsenal/soap-client
-```
+`composer require php-arsenal/salesforce-soap-client`
 
 Usage
 -----
@@ -47,7 +41,7 @@ Usage
 Use the client to query and manipulate your organisation’s Salesforce data. First construct a client using the builder:
 
 ```php
-$builder = new \Phpforce\SoapClient\ClientBuilder(
+$builder = new \PhpArsenal\SoapClient\ClientBuilder(
   '/path/to/your/salesforce/wsdl/sandbox.enterprise.wsdl.xml',
   'username',
   'password',
@@ -117,7 +111,7 @@ To enable logging for the client, call `withLog()` on the builder. For instance 
 $log = new \Monolog\Logger('name');  
 $log->pushHandler(new \Monolog\Handler\StreamHandler('path/to/your.log'));
 
-$builder = new \Phpforce\SoapClient\ClientBuilder(
+$builder = new \PhpArsenal\SoapClient\ClientBuilder(
   '/path/to/your/salesforce/wsdl/sandbox.enterprise.wsdl.xml',
   'username',
   'password',
