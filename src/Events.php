@@ -3,8 +3,8 @@ namespace PhpArsenal\SoapClient;
 
 final class Events
 {
-    const REQUEST    = 'phpforce.soap_client.request';
-    const RESPONSE   = 'phpforce.soap_client.response';
-    const FAULT      = 'phpforce.soap_client.fault';
+    const REQUEST    = 'arsenal.soap_client.request';
+    const RESPONSE   = 'arsenal.soap_client.response';
+    const FAULT      = 'arsenal.soap_client.fault';
 }
 

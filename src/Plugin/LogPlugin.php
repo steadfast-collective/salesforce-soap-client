@@ -26,7 +26,7 @@ class LogPlugin implements EventSubscriberInterface
     public function onClientRequest(RequestEvent $event)
     {
         $this->logger->info(sprintf(
-            '[phpforce/soap-client] request: call "%s" with params %s',
+            '[php-arsenal/salesforce-soap-client] request: call "%s" with params %s',
             $event->getMethod(),
             \json_encode($event->getParams())
         ));
@@ -35,7 +35,7 @@ class LogPlugin implements EventSubscriberInterface
     public function onClientResponse(ResponseEvent $event)
     {
         $this->logger->info(sprintf(
-            '[phpforce/soap-client] response: %s',
+            '[php-arsenal/salesforce-soap-client] response: %s',
             \print_r($event->getResponse(), true)
         ));
     }
@@ -43,7 +43,7 @@ class LogPlugin implements EventSubscriberInterface
     public function onClientFault(FaultEvent $event)
     {
         $this->logger->error(sprintf(
-            '[phpforce/soap-client] fault "%s" for request "%s" with params %s',
+            '[php-arsenal/salesforce-soap-client] fault "%s" for request "%s" with params %s',
             $event->getSoapFault()->getMessage(),
             $event->getRequestEvent()->getMethod(),
             \json_encode($event->getRequestEvent()->getParams())
@@ -56,9 +56,9 @@ class LogPlugin implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'phpforce.soap_client.request'  => 'onClientRequest',
-            'phpforce.soap_client.response' => 'onClientResponse',
-            'phpforce.soap_client.fault'    => 'onClientFault'
+            'arsenal.soap_client.request'  => 'onClientRequest',
+            'arsenal.soap_client.response' => 'onClientResponse',
+            'arsenal.soap_client.fault'    => 'onClientFault'
         );
     }
 }
