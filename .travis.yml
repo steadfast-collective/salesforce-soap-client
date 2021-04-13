@@ -11,7 +11,7 @@ script:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=5a0675c64aee45f003a089cf9df4257a7c23995b969d7511dba70b11398b6cd8
+    - CC_TEST_REPORTER_ID=b47448991d1edb1754494d61de3703ceeedafcab65c4197f5b0cf087dc5c52f6
 
 before_script:
   - echo "xdebug.mode=coverage" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
