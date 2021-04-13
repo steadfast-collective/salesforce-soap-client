@@ -2,8 +2,8 @@ A PHP client for the Salesforce SOAP API
 ==============================================================
 
 [![Release](https://img.shields.io/github/v/release/php-arsenal/salesforce-soap-client)](https://github.com/php-arsenal/salesforce-soap-client/releases)
-[![Travis](https://img.shields.io/travis/php-arsenal/salesforce-soap-client)](https://travis-ci.com/php-arsenal/salesforce-soap-client)
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/php-arsenal/salesforce-soap-client)](https://codeclimate.com/github/php-arsenal/salesforce-soap-client)
+[![CI](https://img.shields.io/github/workflow/status/php-arsenal/salesforce-soap-client/CI)](https://github.com/php-arsenal/salesforce-soap-client/actions/workflows/ci.yml)
+[![Packagist](https://img.shields.io/packagist/dt/php-arsenal/salesforce-soap-client)](https://packagist.org/packages/php-arsenal/salesforce-soap-client)
 
 Introduction
 ------------
