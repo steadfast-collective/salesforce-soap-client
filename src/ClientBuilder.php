@@ -21,12 +21,12 @@ class ClientBuilder
     /**
      * Construct client builder with required parameters.
      *
-     * @param string $wsdl        Path to your Salesforce WSDL
-     * @param string $username    Your Salesforce username
-     * @param string $password    Your Salesforce password
-     * @param string $token       Your Salesforce security token
-     * @param array  $soapOptions Further options to be passed to the SoapClient
-     * @param string $environment SoapClient environment. Used to disable WSDL cache for 'dev' environment
+     * @param  string  $wsdl  Path to your Salesforce WSDL
+     * @param  string  $username  Your Salesforce username
+     * @param  string  $password  Your Salesforce password
+     * @param  string  $token  Your Salesforce security token
+     * @param  array  $soapOptions  Further options to be passed to the SoapClient
+     * @param  string  $environment  SoapClient environment. Used to disable WSDL cache for 'dev' environment
      */
     public function __construct($wsdl, $username, $password, $token, array $soapOptions = [], $environment = 'prod')
     {
@@ -41,8 +41,7 @@ class ClientBuilder
     /**
      * Enable logging.
      *
-     * @param LoggerInterface $log Logger
-     *
+     * @param  LoggerInterface  $log  Logger
      * @return ClientBuilder
      */
     public function withLog(LoggerInterface $log)

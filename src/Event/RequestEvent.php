@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;

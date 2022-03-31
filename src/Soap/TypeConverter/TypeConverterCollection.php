@@ -2,19 +2,17 @@
 
 namespace PhpArsenal\SoapClient\Soap\TypeConverter;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
- * A collection of type converters
+ * A collection of type converters.
  */
 class TypeConverterCollection
 {
     protected $converters = [];
 
     /**
-     * Construct type converter collection
+     * Construct type converter collection.
      *
-     * @param array $converters (optional) Array of type converters
+     * @param  array  $converters  (optional) Array of type converters
      */
     public function __construct(array $converters = [])
     {
@@ -24,11 +22,11 @@ class TypeConverterCollection
     }
 
     /**
-     * Add a type converter to the collection
+     * Add a type converter to the collection.
      *
-     * @param TypeConverterInterface $converter Type converter
-     *
+     * @param  TypeConverterInterface  $converter  Type converter
      * @return TypeConverterCollection
+     *
      * @throws \InvalidArgumentException
      */
     public function add(TypeConverterInterface $converter)
@@ -43,10 +41,9 @@ class TypeConverterCollection
     }
 
     /**
-     * Set (overwrite) a type converter in the collection
+     * Set (overwrite) a type converter in the collection.
      *
-     * @param TypeConverterInterface $converter Type converter
-     *
+     * @param  TypeConverterInterface  $converter  Type converter
      * @return TypeConverterCollection
      */
     public function set(TypeConverterInterface $converter)
@@ -59,12 +56,11 @@ class TypeConverterCollection
 
     /**
      * Returns true if the collection contains a type converter for a certain
-     * namespace and name
+     * namespace and name.
      *
-     * @param string $namespace Converter namespace
-     * @param string $name      Converter name
-     *
-     * @return boolean
+     * @param  string  $namespace  Converter namespace
+     * @param  string  $name  Converter name
+     * @return bool
      */
     public function has($namespace, $name)
     {
@@ -76,7 +72,7 @@ class TypeConverterCollection
     }
 
     /**
-     * Get this collection as a typemap that can be used in PHP's \SoapClient
+     * Get this collection as a typemap that can be used in PHP's \SoapClient.
      *
      * @return array
      */
@@ -85,16 +81,16 @@ class TypeConverterCollection
         $typemap = [];
 
         foreach ($this->converters as $converter) {
-            $typemap[] = array(
+            $typemap[] = [
                 'type_name' => $converter->getTypeName(),
                 'type_ns'   => $converter->getTypeNamespace(),
-                'from_xml'  => function($input) use ($converter) {
+                'from_xml'  => function ($input) use ($converter) {
                     return $converter->convertXmlToPhp($input);
                 },
-                'to_xml'    => function($input) use ($converter) {
+                'to_xml'    => function ($input) use ($converter) {
                     return $converter->convertPhpToXml($input);
                 },
-            );
+            ];
         }
 
         return $typemap;

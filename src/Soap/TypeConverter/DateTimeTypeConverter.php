@@ -1,8 +1,9 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Soap\TypeConverter;
 
 /**
- * Converts between PHP \DateTime and SOAP dateTime objects
+ * Converts between PHP \DateTime and SOAP dateTime objects.
  */
 class DateTimeTypeConverter implements TypeConverterInterface
 {
@@ -48,4 +49,3 @@ class DateTimeTypeConverter implements TypeConverterInterface
         return sprintf('<%1$s>%2$s</%1$s>', $this->getTypeName(), $php->format('Y-m-d\TH:i:sP'));
     }
 }
-

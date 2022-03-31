@@ -3,8 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Process result
- *
+ * Process result.
  */
 class ProcessResult
 {

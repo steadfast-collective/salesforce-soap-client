@@ -7,28 +7,28 @@ use PhpArsenal\SoapClient\Response\SaveResult;
 interface BulkSaverInterface
 {
     /**
-     * Save a record in bulk
+     * Save a record in bulk.
      *
-     * @param object $record
-     * @param string $objectType  The record type, e.g., Account
-     * @param string $matchField  Optional match field for upserts
+     * @param  object  $record
+     * @param  string  $objectType  The record type, e.g., Account
+     * @param  string  $matchField  Optional match field for upserts
      * @return BulkSaver
      */
-    function save($object, $objectType, $matchField = null);
+    public function save($object, $objectType, $matchField = null);
 
     /**
-     * Delete a record in bulk
+     * Delete a record in bulk.
      *
-     * @param object $record  Any object is allowed, as long as it has an Id
-     *                        property with non-empty value
+     * @param  object  $record  Any object is allowed, as long as it has an Id
+     *                          property with non-empty value
      * @return BulkSaver
      */
-    function delete($record);
+    public function delete($record);
 
     /**
-     * Flush all creates, updates and upserts
+     * Flush all creates, updates and upserts.
      *
      * @return SaveResult[]
      */
-    function flush();
+    public function flush();
 }

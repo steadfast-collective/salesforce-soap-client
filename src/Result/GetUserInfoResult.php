@@ -3,7 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * User info result
+ * User info result.
  */
 class GetUserInfoResult
 {
@@ -52,7 +52,7 @@ class GetUserInfoResult
     protected $orgDefaultCurrencyIsoCode;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getAccessibilityMode()
     {
@@ -76,7 +76,7 @@ class GetUserInfoResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getOrgDisallowHtmlAttachments()
     {
@@ -84,7 +84,7 @@ class GetUserInfoResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getOrgHasPersonAccounts()
     {
@@ -100,7 +100,7 @@ class GetUserInfoResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getOrganizationMultiCurrency()
     {

@@ -3,7 +3,7 @@
 namespace PhpArsenal\SoapClient\Soap\TypeConverter;
 
 /**
- * A type converter converts between SOAP and PHP types
+ * A type converter converts between SOAP and PHP types.
  */
 interface TypeConverterInterface
 {
@@ -12,30 +12,28 @@ interface TypeConverterInterface
      *
      * @return string
      */
-    function getTypeNamespace();
+    public function getTypeNamespace();
 
     /**
      * Get type name.
      *
      * @return string
      */
-    function getTypeName();
+    public function getTypeName();
 
     /**
      * Convert given XML string to PHP type.
      *
-     * @param string $xml XML string
-     *
+     * @param  string  $xml  XML string
      * @return mixed
      */
-    function convertXmlToPhp($xml);
+    public function convertXmlToPhp($xml);
 
     /**
      * Convert PHP type to XML string.
      *
-     * @param mixed $php PHP type
-     *
+     * @param  mixed  $php  PHP type
      * @return string
      */
-    function convertPhpToXml($php);
+    public function convertPhpToXml($php);
 }

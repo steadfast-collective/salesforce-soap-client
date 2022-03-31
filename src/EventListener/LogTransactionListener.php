@@ -8,19 +8,19 @@ use Symfony\Component\HttpKernel\Log\LoggerInterface;
 class LogTransactionListener
 {
     /**
-     * Logger
+     * Logger.
      *
      * @var LoggerInterface
      */
     private $logger;
 
     /**
-     * Whether logging is enabled
+     * Whether logging is enabled.
      *
-     * @var boolean
+     * @var bool
      */
     private $logging;
-    
+
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
@@ -29,7 +29,7 @@ class LogTransactionListener
     public function onSalesforceClientResponse(Event\ResponseEvent $event)
     {
         if (true === $this->logging) {
-            $this->logger->debug('[Salesforce] response:', array($event->getResponse()));
+            $this->logger->debug('[Salesforce] response:', [$event->getResponse()]);
         }
     }
 

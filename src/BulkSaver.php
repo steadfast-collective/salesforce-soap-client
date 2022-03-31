@@ -6,28 +6,28 @@ use PhpArsenal\SoapClient\Result\SaveResult;
 
 /**
  * Add creates, updates and upserts to the queue, and issue them in bulk to
- * the Salesforce API
+ * the Salesforce API.
  *
  * @author David de Boer <david@ddeboer.nl>
  */
 class BulkSaver implements BulkSaverInterface
 {
     /**
-     * Maximum number of records that may be updated or created in one call
+     * Maximum number of records that may be updated or created in one call.
      *
      * @var int
      */
     private $bulkSaveLimit = 200;
 
     /**
-     * Maximum number of records that may be deleted in one call
+     * Maximum number of records that may be deleted in one call.
      *
      * @var int
      */
     private $bulkDeleteLimit = 200;
 
     /**
-     * Salesforce SOAP client
+     * Salesforce SOAP client.
      *
      * @var ClientInterface
      */
@@ -41,9 +41,9 @@ class BulkSaver implements BulkSaverInterface
     private $results = [];
 
     /**
-     * Construct bulk saver
+     * Construct bulk saver.
      *
-     * @param Client $client Salesforce client
+     * @param  Client  $client  Salesforce client
      */
     public function __construct(ClientInterface $client)
     {
@@ -55,12 +55,11 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Save a record in bulk
+     * Save a record in bulk.
      *
-     * @param mixed $record
-     * @param string $objectType The record type, e.g., Account
-     * @param string $matchField Optional match field for upserts
-     *
+     * @param  mixed  $record
+     * @param  string  $objectType  The record type, e.g., Account
+     * @param  string  $matchField  Optional match field for upserts
      * @return BulkSaver
      */
     public function save($record, $objectType, $matchField = null)
@@ -81,7 +80,7 @@ class BulkSaver implements BulkSaverInterface
      */
     public function delete($record)
     {
-        if (!isset($record->Id) || !$record->Id) {
+        if (! isset($record->Id) || ! $record->Id) {
             throw new \InvalidArgumentException(
                 'Only records with an Id can be deleted'
             );
@@ -119,12 +118,11 @@ class BulkSaver implements BulkSaverInterface
             }
         }
 
-
         return $this->results;
     }
 
     /**
-     * Get bulk save limit
+     * Get bulk save limit.
      *
      * @return int
      */
@@ -134,18 +132,20 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Set bulk Save limit
-     * @param int $bulkSaveLimit
+     * Set bulk Save limit.
+     *
+     * @param  int  $bulkSaveLimit
      * @return BulkSaver
      */
     public function setBulkSaveLimit($bulkSaveLimit)
     {
         $this->bulkSaveLimit = $bulkSaveLimit;
+
         return $this;
     }
 
     /**
-     * Get bulk delete limit
+     * Get bulk delete limit.
      *
      * @return int
      */
@@ -155,22 +155,23 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Set bulk delete limit
+     * Set bulk delete limit.
      *
-     * @param int $bulkDeleteLimit
+     * @param  int  $bulkDeleteLimit
      * @return BulkSaver
      */
     public function setBulkDeleteLimit($bulkDeleteLimit)
     {
         $this->bulkDeleteLimit = $bulkDeleteLimit;
+
         return $this;
     }
 
     /**
-     * Add a record to the create queue
+     * Add a record to the create queue.
      *
-     * @param sObject $sObject
-     * @param type $objectType
+     * @param  sObject  $sObject
+     * @param  type  $objectType
      */
     private function addBulkCreateRecord($record, $objectType)
     {
@@ -183,11 +184,11 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Add a record id to the bulk delete queue
+     * Add a record id to the bulk delete queue.
      *
      * (Delete calls
      *
-     * @param string $id
+     * @param  string  $id
      */
     private function addBulkDeleteRecord($record)
     {
@@ -199,10 +200,10 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Add a record to the update queue
+     * Add a record to the update queue.
      *
-     * @param sObject $sObject
-     * @param string $objectType
+     * @param  sObject  $sObject
+     * @param  string  $objectType
      */
     private function addBulkUpdateRecord($sObject, $objectType)
     {
@@ -215,10 +216,10 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Add a record to the update queue
+     * Add a record to the update queue.
      *
-     * @param sObject $sObject
-     * @param string $objectType
+     * @param  sObject  $sObject
+     * @param  string  $objectType
      */
     private function addBulkUpsertRecord($sObject, $objectType, $matchField)
     {
@@ -233,9 +234,9 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Flush creates
+     * Flush creates.
      *
-     * @param string $objectType
+     * @param  string  $objectType
      * @return SaveResult[]
      */
     private function flushCreates($objectType)
@@ -247,7 +248,7 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Flush deletes
+     * Flush deletes.
      *
      * @return SaveResult[]
      */
@@ -265,9 +266,9 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Flush updates
+     * Flush updates.
      *
-     * @param string $objectType
+     * @param  string  $objectType
      * @return SaveResult[]
      */
     private function flushUpdates($objectType)
@@ -279,9 +280,9 @@ class BulkSaver implements BulkSaverInterface
     }
 
     /**
-     * Flush upserts
+     * Flush upserts.
      *
-     * @param string $objectType
+     * @param  string  $objectType
      * @return SaveResult[]
      */
     private function flushUpserts($objectType)

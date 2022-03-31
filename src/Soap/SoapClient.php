@@ -3,32 +3,30 @@
 namespace PhpArsenal\SoapClient\Soap;
 
 /**
- * SOAP client used for the Salesforce API client
- *
+ * SOAP client used for the Salesforce API client.
  */
 class SoapClient extends \SoapClient
 {
     /**
-     * SOAP types derived from WSDL
+     * SOAP types derived from WSDL.
      *
      * @var array
      */
     protected $types;
 
     /**
-     * Retrieve SOAP types from the WSDL and parse them
+     * Retrieve SOAP types from the WSDL and parse them.
      *
-     * @return array    Array of types and their properties
+     * @return array Array of types and their properties
      */
     public function getSoapTypes()
     {
         if (null === $this->types) {
-
             $soapTypes = $this->__getTypes();
             foreach ($soapTypes as $soapType) {
                 $properties = [];
                 $lines = explode("\n", $soapType);
-                if (!preg_match('/struct (.*) {/', $lines[0], $matches)) {
+                if (! preg_match('/struct (.*) {/', $lines[0], $matches)) {
                     continue;
                 }
                 $typeName = $matches[1];
@@ -54,18 +52,17 @@ class SoapClient extends \SoapClient
     }
 
     /**
-     * Get a SOAP type’s elements
+     * Get a SOAP type’s elements.
      *
-     * @param string $type Object name
-     * @return array       Elements for the type
+     * @param  string  $type  Object name
+     * @return array Elements for the type
      */
 
     /**
-     * Get SOAP elements for a complexType
+     * Get SOAP elements for a complexType.
      *
-     * @param string $complexType Name of SOAP complexType
-     *
-     * @return array  Names of elements and their types
+     * @param  string  $complexType  Name of SOAP complexType
+     * @return array Names of elements and their types
      */
     public function getSoapElements($complexType)
     {
@@ -76,11 +73,10 @@ class SoapClient extends \SoapClient
     }
 
     /**
-     * Get a SOAP type’s element
+     * Get a SOAP type’s element.
      *
-     * @param string $complexType Name of SOAP complexType
-     * @param string $element     Name of element belonging to SOAP complexType
-     *
+     * @param  string  $complexType  Name of SOAP complexType
+     * @param  string  $element  Name of element belonging to SOAP complexType
      * @return string
      */
     public function getSoapElementType($complexType, $element)

@@ -51,9 +51,9 @@ class SoapClientFactory
     protected $typeConverters;
 
     /**
-     * @param string $wsdl Path to WSDL file
-     * @param array $soapOptions
-     * @param string $environment
+     * @param  string  $wsdl  Path to WSDL file
+     * @param  array  $soapOptions
+     * @param  string  $environment
      * @return SoapClient
      */
     public function factory($wsdl, array $soapOptions = [], $environment = 'prod')
@@ -74,8 +74,8 @@ class SoapClientFactory
     /**
      * test.
      *
-     * @param string $soap SOAP class
-     * @param string $php  PHP class
+     * @param  string  $soap  SOAP class
+     * @param  string  $php  PHP class
      */
     public function setClassmapping($soap, $php)
     {
@@ -104,8 +104,7 @@ class SoapClientFactory
     /**
      * Set type converter collection.
      *
-     * @param TypeConverter\TypeConverterCollection $typeConverters Type converter collection
-     *
+     * @param  TypeConverter\TypeConverterCollection  $typeConverters  Type converter collection
      * @return SoapClientFactory
      */
     public function setTypeConverters(TypeConverter\TypeConverterCollection $typeConverters)

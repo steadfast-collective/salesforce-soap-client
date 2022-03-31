@@ -3,7 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * A deleted record
+ * A deleted record.
  */
 class DeletedRecord
 {
@@ -18,7 +18,7 @@ class DeletedRecord
     protected $id;
 
     /**
-     * Get deletion date
+     * Get deletion date.
      *
      * @return \DateTime
      */
@@ -28,7 +28,7 @@ class DeletedRecord
     }
 
     /**
-     * Get record id
+     * Get record id.
      *
      * @return string
      */
