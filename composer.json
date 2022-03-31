@@ -2,7 +2,13 @@
     "name": "php-arsenal/salesforce-soap-client",
     "type": "library",
     "description": "A client for the Salesforce SOAP API",
-    "keywords": [ "salesforce", "crm", "soap", "force.com", "web services" ],
+    "keywords": [
+        "salesforce",
+        "crm",
+        "soap",
+        "force.com",
+        "web services"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -24,9 +30,7 @@
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
-        "run-tests": "vendor/bin/phpunit -c phpunit.xml.dist --no-coverage",
-        "run-coverage": "vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover Tests/_output/coverage.xml",
-        "run-coverage-text": "vendor/bin/phpunit -c phpunit.xml.dist --coverage-text=Tests/_output/coverage.txt && cat Tests/_output/coverage.txt"
+        "test": "vendor/bin/phpunit -c phpunit.xml.dist --no-coverage"
     },
     "config": {
         "sort-packages": true
