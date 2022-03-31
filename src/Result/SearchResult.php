@@ -4,5 +4,5 @@ namespace PhpArsenal\SoapClient\Result;
 
 class SearchResult
 {
-    public $searchRecords = array();
+    public $searchRecords = [];
 }

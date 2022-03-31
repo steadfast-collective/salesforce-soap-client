@@ -3,17 +3,17 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Query result
+ * Query result.
  */
 class QueryResult
 {
     protected $done;
     protected $queryLocator;
-    protected $records = array();
+    protected $records = [];
     protected $size;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDone()
     {

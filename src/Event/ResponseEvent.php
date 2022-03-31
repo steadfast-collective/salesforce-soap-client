@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
@@ -9,9 +10,8 @@ class ResponseEvent extends Event
     protected $response;
 
     /**
-     *
-     * @param RequestEvent $requestEvent
-     * @param mixed $response   SaveResult[] or QueryResult
+     * @param  RequestEvent  $requestEvent
+     * @param  mixed  $response  SaveResult[] or QueryResult
      */
     public function __construct(RequestEvent $requestEvent, $response)
     {
@@ -29,4 +29,3 @@ class ResponseEvent extends Event
         return $this->response;
     }
 }
-

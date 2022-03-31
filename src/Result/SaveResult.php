@@ -3,15 +3,14 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Save result
+ * Save result.
  *
  * @link http://www.salesforce.com/us/developer/docs/api/Content/sforce_api_calls_update_saveresult.htm
- *
  */
 class SaveResult
 {
     /**
-     * Record id
+     * Record id.
      *
      * From the Salesforce docs:
      * "If this field is empty, then the object was not updated and the API
@@ -22,7 +21,7 @@ class SaveResult
     protected $id;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $success;
 
@@ -45,7 +44,7 @@ class SaveResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSuccess()
     {
@@ -69,7 +68,7 @@ class SaveResult
     }
 
     /**
-     * @param mixed $param
+     * @param  mixed  $param
      */
     public function setParam($param)
     {

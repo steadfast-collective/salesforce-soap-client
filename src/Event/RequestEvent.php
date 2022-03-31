@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
@@ -6,10 +7,10 @@ use Symfony\Contracts\EventDispatcher\Event;
 class RequestEvent extends Event
 {
     protected $method;
-    protected $params = array();
+    protected $params = [];
     protected $response;
 
-    public function __construct($method, array $params = array())
+    public function __construct($method, array $params = [])
     {
         $this->setMethod($method);
         $this->setParams($params);
@@ -45,4 +46,3 @@ class RequestEvent extends Event
         $this->response = $response;
     }
 }
-

@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Request;
 
 class SingleEmailMessage extends BaseEmail

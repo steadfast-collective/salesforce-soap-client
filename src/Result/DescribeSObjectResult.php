@@ -31,7 +31,7 @@ class DescribeSObjectResult
     protected $updateable;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActivateable()
     {
@@ -43,27 +43,28 @@ class DescribeSObjectResult
      */
     public function getChildRelationships()
     {
-        if (!$this->childRelationships instanceof ArrayCollection) {
+        if (! $this->childRelationships instanceof ArrayCollection) {
             $this->childRelationships = new ArrayCollection($this->childRelationships);
         }
+
         return $this->childRelationships;
     }
 
     /**
-     * Get child relationship by name
+     * Get child relationship by name.
      *
-     * @param string $name  Relationship name
+     * @param  string  $name  Relationship name
      * @return ChildRelationship
      */
     public function getChildRelationship($name)
     {
-        return $this->getChildRelationships()->filter(function($input) use ($name) {
+        return $this->getChildRelationships()->filter(function ($input) use ($name) {
             return $name === $input->getRelationshipName();
         })->first();
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCreateable()
     {
@@ -71,7 +72,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCustom()
     {
@@ -79,7 +80,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCustomSetting()
     {
@@ -87,7 +88,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDeletable()
     {
@@ -95,7 +96,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDeprecatedAndHidden()
     {
@@ -103,7 +104,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isFeedEnabled()
     {
@@ -111,26 +112,26 @@ class DescribeSObjectResult
     }
 
     /**
-     *
      * @return ArrayCollection|Field[]
      */
     public function getFields()
     {
-        if (!$this->fields instanceof ArrayCollection) {
+        if (! $this->fields instanceof ArrayCollection) {
             $this->fields = new ArrayCollection($this->fields);
         }
+
         return $this->fields;
     }
 
     /**
-     * Get field description by field name
+     * Get field description by field name.
      *
-     * @param string $field Field name
+     * @param  string  $field  Field name
      * @return Field
      */
     public function getField($field)
     {
-        return $this->getFields()->filter(function($input) use ($field) {
+        return $this->getFields()->filter(function ($input) use ($field) {
             return $field === $input->getName();
         })->first();
     }
@@ -160,7 +161,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isLayoutable()
     {
@@ -168,7 +169,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isMergeable()
     {
@@ -184,7 +185,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isQueryable()
     {
@@ -192,7 +193,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isReplicateable()
     {
@@ -200,7 +201,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRetrieveable()
     {
@@ -208,7 +209,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSearchable()
     {
@@ -216,7 +217,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isTriggerable()
     {
@@ -224,7 +225,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUndeletable()
     {
@@ -232,7 +233,7 @@ class DescribeSObjectResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUpdateable()
     {
@@ -240,26 +241,26 @@ class DescribeSObjectResult
     }
 
     /**
-     * Get all fields that constitute relationships to other objects
+     * Get all fields that constitute relationships to other objects.
      *
      * @return ArrayCollection
      */
     public function getRelationshipFields()
     {
-        return $this->getFields()->filter(function($field) {
+        return $this->getFields()->filter(function ($field) {
             return null !== $field->getRelationshipName();
         });
     }
 
     /**
-     * Get a relationship field
+     * Get a relationship field.
      *
-     * @param string $name
+     * @param  string  $name
      * @return Field
      */
     public function getRelationshipField($name)
     {
-        return $this->getRelationshipFields()->filter(function($field) use ($name) {
+        return $this->getRelationshipFields()->filter(function ($field) use ($name) {
             return $name === $field->getName();
         })->first();
     }

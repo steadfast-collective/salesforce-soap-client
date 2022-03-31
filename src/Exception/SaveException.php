@@ -1,12 +1,13 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Exception;
 
 /**
- * Collection of faulty results
+ * Collection of faulty results.
  */
 class SaveException extends \Exception implements \IteratorAggregate, \Countable
 {
-    protected $results = array();
+    protected $results = [];
 
     public function add($result)
     {
@@ -14,7 +15,7 @@ class SaveException extends \Exception implements \IteratorAggregate, \Countable
 
         $this->message = implode(
             "\n",
-            array_map(function($e) {
+            array_map(function ($e) {
                 $errors = $e->getErrors();
                 if (count($errors) > 0) {
                     return $errors[0]->getMessage();

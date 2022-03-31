@@ -3,7 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * An error
+ * An error.
  */
 class Error
 {
