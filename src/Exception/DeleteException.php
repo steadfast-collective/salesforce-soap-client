@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Exception;
 
 class DeleteException extends \RuntimeException

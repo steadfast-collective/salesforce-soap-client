@@ -46,8 +46,8 @@ class RecordIterator implements \SeekableIterator, \Countable
     /**
      * Construct a record iterator.
      *
-     * @param client $client
-     * @param string $result
+     * @param  client  $client
+     * @param  string  $result
      */
     public function __construct(Client $client, QueryResult $result)
     {
@@ -57,6 +57,7 @@ class RecordIterator implements \SeekableIterator, \Countable
 
     /**
      * @inheritdoc
+     *
      * @return object
      */
     public function current(): object
@@ -68,8 +69,7 @@ class RecordIterator implements \SeekableIterator, \Countable
      * Get record at pointer, or, if there is no record, try to query Salesforce
      * for more records.
      *
-     * @param int $pointer
-     *
+     * @param  int  $pointer
      * @return object
      */
     protected function getObjectAt($pointer)
@@ -144,8 +144,7 @@ class RecordIterator implements \SeekableIterator, \Countable
     /**
      * Set query result, as it is returned from Salesforce.
      *
-     * @param QueryResult $result
-     *
+     * @param  QueryResult  $result
      * @return RecordIterator
      */
     public function setQueryResult(QueryResult $result)
@@ -176,7 +175,7 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * @param int $position
+     * @param  int  $position
      */
     #[\ReturnTypeWillChange]
     public function seek($position)
@@ -191,8 +190,7 @@ class RecordIterator implements \SeekableIterator, \Countable
      * current page. If you wish to sort larger sets of Salesforce records, do
      * so in the select query you issue to the Salesforce API.
      *
-     * @param string $by
-     *
+     * @param  string  $by
      * @return \ArrayIterator
      */
     public function sort($by)

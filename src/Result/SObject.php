@@ -3,8 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Standard object
- *
+ * Standard object.
  */
 class SObject
 {
@@ -12,7 +11,7 @@ class SObject
      * @var string
      */
     public $Id;
-    
+
     public function getId()
     {
         return $this->Id;

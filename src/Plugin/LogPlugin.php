@@ -1,22 +1,23 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Plugin;
 
+use PhpArsenal\SoapClient\Event\FaultEvent;
 use PhpArsenal\SoapClient\Event\RequestEvent;
 use PhpArsenal\SoapClient\Event\ResponseEvent;
-use PhpArsenal\SoapClient\Event\FaultEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * A plugin that logs messages
+ * A plugin that logs messages.
  *
  *  */
 class LogPlugin implements EventSubscriberInterface
 {
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param LoggerInterface $logger
+     * @param  LoggerInterface  $logger
      */
     public function __construct(LoggerInterface $logger)
     {
@@ -55,10 +56,10 @@ class LogPlugin implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             'arsenal.soap_client.request'  => 'onClientRequest',
             'arsenal.soap_client.response' => 'onClientResponse',
-            'arsenal.soap_client.fault'    => 'onClientFault'
-        );
+            'arsenal.soap_client.fault'    => 'onClientFault',
+        ];
     }
 }

@@ -3,8 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Merge result
- *
+ * Merge result.
  */
 class MergeResult
 {
@@ -14,7 +13,7 @@ class MergeResult
     protected $id;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $success;
 
@@ -37,7 +36,7 @@ class MergeResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getSuccess()
     {
@@ -57,5 +56,3 @@ class MergeResult
         return $this->mergedRecordIds;
     }
 }
-
-

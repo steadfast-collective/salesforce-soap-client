@@ -3,9 +3,9 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Send email result
+ * Send email result.
  */
-class SendEmailResult 
+class SendEmailResult
 {
     protected $errors;
     protected $success;

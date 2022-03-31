@@ -3,7 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Login result
+ * Login result.
  */
 class LoginResult
 {
@@ -24,7 +24,7 @@ class LoginResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getPasswordExpired()
     {
@@ -32,7 +32,7 @@ class LoginResult
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getSandbox()
     {
@@ -72,7 +72,7 @@ class LoginResult
     }
 
     /**
-     * Get the server instance, e.g. ‘eu1’ or ‘cs7’
+     * Get the server instance, e.g. ‘eu1’ or ‘cs7’.
      *
      * @return string
      */
@@ -88,7 +88,7 @@ class LoginResult
             $matches
         );
 
-        if (!$match || !isset($matches['instance'])) {
+        if (! $match || ! isset($matches['instance'])) {
             throw new \RuntimeException('Server instance could not be determined');
         }
 

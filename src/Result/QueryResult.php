@@ -3,7 +3,7 @@
 namespace PhpArsenal\SoapClient\Result;
 
 /**
- * Query result
+ * Query result.
  */
 class QueryResult
 {
@@ -13,7 +13,7 @@ class QueryResult
     protected $size;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDone()
     {

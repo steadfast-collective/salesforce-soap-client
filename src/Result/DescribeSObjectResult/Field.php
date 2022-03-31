@@ -185,7 +185,7 @@ class Field
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSortable()
     {
@@ -201,7 +201,7 @@ class Field
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUnique()
     {
@@ -209,7 +209,7 @@ class Field
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isUpdateable()
     {
@@ -217,7 +217,7 @@ class Field
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isWriteRequiresMasterRead()
     {
@@ -225,10 +225,10 @@ class Field
     }
 
     /**
-     * Get whether this field references a certain object
+     * Get whether this field references a certain object.
      *
-     * @param string $object     Name of the referenced object
-     * @return boolean
+     * @param  string  $object  Name of the referenced object
+     * @return bool
      */
     public function references($object)
     {

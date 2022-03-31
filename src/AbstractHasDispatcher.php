@@ -1,13 +1,13 @@
 <?php
+
 namespace PhpArsenal\SoapClient;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
- * Can be extended by classes that dispatch events using the event dispatcher
- *
+ * Can be extended by classes that dispatch events using the event dispatcher.
  */
 abstract class AbstractHasDispatcher
 {
@@ -17,9 +17,9 @@ abstract class AbstractHasDispatcher
     protected $eventDispatcher;
 
     /**
-     * Set event dispatcher
+     * Set event dispatcher.
      *
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param  EventDispatcherInterface  $eventDispatcher
      */
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
     {
@@ -27,7 +27,7 @@ abstract class AbstractHasDispatcher
     }
 
     /**
-     * Get event dispatcher
+     * Get event dispatcher.
      *
      * If no event dispatcher is supplied, a new one is created. This one will
      * then be used internally by the Accelerate library.
@@ -44,11 +44,10 @@ abstract class AbstractHasDispatcher
     }
 
     /**
-     * Dispatch an event
+     * Dispatch an event.
      *
-     * @param string $name  Name of event: see Events.php
-     * @param Event  $event Event object
-     *
+     * @param  string  $name  Name of event: see Events.php
+     * @param  Event  $event  Event object
      * @return Event
      */
     protected function dispatch($name, Event $event)
@@ -56,4 +55,3 @@ abstract class AbstractHasDispatcher
         return $this->getEventDispatcher()->dispatch($event, $name);
     }
 }
-
