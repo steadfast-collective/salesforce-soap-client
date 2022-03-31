@@ -1,20 +1,19 @@
 <?php
-namespace PhpArsenal\SoapClient\Soap;
 
-use PhpArsenal\SoapClient\Soap\TypeConverter;
+namespace PhpArsenal\SoapClient\Soap;
 
 /**
  * Factory to create a \SoapClient properly configured for the Salesforce SOAP
- * client
+ * client.
  */
 class SoapClientFactory
 {
     /**
-     * Default classmap
+     * Default classmap.
      *
      * @var array
      */
-    protected $classmap = array(
+    protected $classmap = [
         'ChildRelationship'     => 'PhpArsenal\SoapClient\Result\ChildRelationship',
         'DeleteResult'          => 'PhpArsenal\SoapClient\Result\DeleteResult',
         'DeletedRecord'         => 'PhpArsenal\SoapClient\Result\DeletedRecord',
@@ -42,10 +41,10 @@ class SoapClientFactory
         'sObject'               => 'PhpArsenal\SoapClient\Result\SObject',
         'UndeleteResult'        => 'PhpArsenal\SoapClient\Result\UndeleteResult',
         'UpsertResult'          => 'PhpArsenal\SoapClient\Result\UpsertResult',
-    );
+    ];
 
     /**
-     * Type converters collection
+     * Type converters collection.
      *
      * @var TypeConverter\TypeConverterCollection
      */
@@ -57,15 +56,15 @@ class SoapClientFactory
      * @param string $environment
      * @return SoapClient
      */
-    public function factory($wsdl, array $soapOptions = [], $environment)
+    public function factory($wsdl, array $soapOptions = [], $environment = 'prod')
     {
-        $defaults = array(
+        $defaults = [
             'trace'      => 1,
             'features'   => \SOAP_SINGLE_ELEMENT_ARRAYS,
             'classmap'   => $this->classmap,
             'typemap'    => $this->getTypeConverters()->getTypemap(),
-            'cache_wsdl' => $environment == 'dev' ? \WSDL_CACHE_NONE : \WSDL_CACHE_MEMORY
-        );
+            'cache_wsdl' => $environment == 'dev' ? \WSDL_CACHE_NONE : \WSDL_CACHE_MEMORY,
+        ];
 
         $options = array_merge($defaults, $soapOptions);
 
@@ -73,7 +72,7 @@ class SoapClientFactory
     }
 
     /**
-     * test
+     * test.
      *
      * @param string $soap SOAP class
      * @param string $php  PHP class
@@ -84,7 +83,7 @@ class SoapClientFactory
     }
 
     /**
-     * Get type converter collection that will be used for the \SoapClient
+     * Get type converter collection that will be used for the \SoapClient.
      *
      * @return TypeConverter\TypeConverterCollection
      */
@@ -92,10 +91,10 @@ class SoapClientFactory
     {
         if (null === $this->typeConverters) {
             $this->typeConverters = new TypeConverter\TypeConverterCollection(
-                array(
+                [
                     new TypeConverter\DateTimeTypeConverter(),
-                    new TypeConverter\DateTypeConverter()
-                )
+                    new TypeConverter\DateTypeConverter(),
+                ]
             );
         }
 
@@ -103,7 +102,7 @@ class SoapClientFactory
     }
 
     /**
-     * Set type converter collection
+     * Set type converter collection.
      *
      * @param TypeConverter\TypeConverterCollection $typeConverters Type converter collection
      *

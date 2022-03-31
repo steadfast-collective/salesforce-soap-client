@@ -1,10 +1,11 @@
 <?php
+
 namespace PhpArsenal\SoapClient\Result;
 
 use PhpArsenal\SoapClient\Client;
 
 /**
- * Iterator that contains records retrieved from the Salesforce API
+ * Iterator that contains records retrieved from the Salesforce API.
  *
  * A maximum of 2000 records can be queried at once. If the end of those 2000
  * records is reached, an extra query to the Salesforce API will be issued to
@@ -15,35 +16,35 @@ use PhpArsenal\SoapClient\Client;
 class RecordIterator implements \SeekableIterator, \Countable
 {
     /**
-     * Salesforce client
+     * Salesforce client.
      *
      * @var Client
      */
     protected $client;
 
     /**
-     * Query result
+     * Query result.
      *
      * @var QueryResult
      */
     private $queryResult;
 
     /**
-     * Iterator pointer
+     * Iterator pointer.
      *
      * @var int
      */
     protected $pointer = 0;
 
     /**
-     * Cached current domain model object
+     * Cached current domain model object.
      *
      * @var mixed
      */
     protected $current;
 
     /**
-     * Construct a record iterator
+     * Construct a record iterator.
      *
      * @param client $client
      * @param string $result
@@ -55,17 +56,17 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      * @return object
      */
-    public function current()
+    public function current(): object
     {
         return $this->current;
     }
 
     /**
      * Get record at pointer, or, if there is no record, try to query Salesforce
-     * for more records
+     * for more records.
      *
      * @param int $pointer
      *
@@ -78,7 +79,7 @@ class RecordIterator implements \SeekableIterator, \Countable
 
             foreach ($this->current as $key => &$value) {
                 if ($value instanceof QueryResult) {
-                    $value = new RecordIterator($this->client, $value);
+                    $value = new self($this->client, $value);
                 }
             }
 
@@ -87,7 +88,7 @@ class RecordIterator implements \SeekableIterator, \Countable
 
         // If no record was found at pointer, see if there are more records
         // available for querying
-        if (!$this->queryResult->isDone()) {
+        if (! $this->queryResult->isDone()) {
             $this->queryMore();
 
             return $this->getObjectAt($this->pointer);
@@ -95,43 +96,43 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      *
      * @return int|null
      */
-    public function key()
+    public function key(): int|null
     {
         return $this->pointer;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    public function next()
+    public function next(): void
     {
         $this->pointer++;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->pointer = 0;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      *
-     * @return boolean
+     * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return null != $this->getObjectAt($this->pointer);
     }
 
     /**
-     * Get first object
+     * Get first object.
      *
      * @return object
      */
@@ -141,7 +142,7 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * Set query result, as it is returned from Salesforce
+     * Set query result, as it is returned from Salesforce.
      *
      * @param QueryResult $result
      *
@@ -155,8 +156,7 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * Query Salesforce for more records and rewind iterator
-     *
+     * Query Salesforce for more records and rewind iterator.
      */
     protected function queryMore()
     {
@@ -166,11 +166,11 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * Get total number of records returned from Salesforce
+     * Get total number of records returned from Salesforce.
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->queryResult->getSize();
     }
@@ -178,13 +178,14 @@ class RecordIterator implements \SeekableIterator, \Countable
     /**
      * @param int $position
      */
+    #[\ReturnTypeWillChange]
     public function seek($position)
     {
         return $this->getObjectAt($position);
     }
 
     /**
-     * Get sorted result iterator for the records on the current page
+     * Get sorted result iterator for the records on the current page.
      *
      * Note: this method will not query Salesforce for records outside the
      * current page. If you wish to sort larger sets of Salesforce records, do
@@ -198,14 +199,14 @@ class RecordIterator implements \SeekableIterator, \Countable
     {
         $by = ucfirst($by);
         $array = $this->queryResult->getRecords();
-        usort($array, function($a, $b) use ($by) {
+        usort($array, function ($a, $b) use ($by) {
             // These two ifs take care of moving empty values to the end of the
             // array instead of the beginning
-            if (!isset($a->$by) || !$a->$by) {
+            if (! isset($a->$by) || ! $a->$by) {
                 return 1;
             }
 
-            if (!isset($b->$by) || !$b->$by) {
+            if (! isset($b->$by) || ! $b->$by) {
                 return -1;
             }
 
@@ -216,7 +217,7 @@ class RecordIterator implements \SeekableIterator, \Countable
     }
 
     /**
-     * Get the query result as returned by Salesforce
+     * Get the query result as returned by Salesforce.
      *
      * @return QueryResult
      */
