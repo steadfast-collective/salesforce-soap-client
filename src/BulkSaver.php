@@ -33,11 +33,11 @@ class BulkSaver implements BulkSaverInterface
      */
     private $client;
 
-    private $bulkCreateRecords = array();
-    private $bulkDeleteRecords = array();
-    private $bulkUpdateRecords = array();
-    private $bulkUpsertRecords = array();
-    private $bulkUpsertMatchFields = array();
+    private $bulkCreateRecords = [];
+    private $bulkDeleteRecords = [];
+    private $bulkUpdateRecords = [];
+    private $bulkUpsertRecords = [];
+    private $bulkUpsertMatchFields = [];
     private $results = [];
 
     /**
@@ -241,7 +241,7 @@ class BulkSaver implements BulkSaverInterface
     private function flushCreates($objectType)
     {
         $result = $this->client->create($this->bulkCreateRecords[$objectType], $objectType);
-        $this->bulkCreateRecords[$objectType] = array();
+        $this->bulkCreateRecords[$objectType] = [];
 
         return $result;
     }
@@ -253,13 +253,13 @@ class BulkSaver implements BulkSaverInterface
      */
     private function flushDeletes()
     {
-        $ids = array();
+        $ids = [];
         foreach ($this->bulkDeleteRecords as $record) {
             $ids[] = $record->Id;
         }
 
         $result = $this->client->delete($ids);
-        $this->bulkDeleteRecords = array();
+        $this->bulkDeleteRecords = [];
 
         return $result;
     }
@@ -273,7 +273,7 @@ class BulkSaver implements BulkSaverInterface
     private function flushUpdates($objectType)
     {
         $result = $this->client->update($this->bulkUpdateRecords[$objectType], $objectType);
-        $this->bulkUpdateRecords[$objectType] = array();
+        $this->bulkUpdateRecords[$objectType] = [];
 
         return $result;
     }
@@ -290,7 +290,7 @@ class BulkSaver implements BulkSaverInterface
             $this->bulkUpsertMatchFields[$objectType],
             $this->bulkUpsertRecords[$objectType],
             $objectType);
-        $this->bulkUpsertRecords[$objectType] = array();
+        $this->bulkUpsertRecords[$objectType] = [];
 
         return $result;
     }

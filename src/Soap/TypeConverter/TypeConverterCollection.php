@@ -9,14 +9,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class TypeConverterCollection
 {
-    protected $converters = array();
+    protected $converters = [];
 
     /**
      * Construct type converter collection
      *
      * @param array $converters (optional) Array of type converters
      */
-    public function __construct(array $converters = array())
+    public function __construct(array $converters = [])
     {
         foreach ($converters as $converter) {
             $this->add($converter);
@@ -43,7 +43,7 @@ class TypeConverterCollection
     }
 
     /**
-     * Set (overwrite) a type converter in the collection 
+     * Set (overwrite) a type converter in the collection
      *
      * @param TypeConverterInterface $converter Type converter
      *
@@ -60,7 +60,7 @@ class TypeConverterCollection
     /**
      * Returns true if the collection contains a type converter for a certain
      * namespace and name
-     * 
+     *
      * @param string $namespace Converter namespace
      * @param string $name      Converter name
      *
@@ -77,12 +77,12 @@ class TypeConverterCollection
 
     /**
      * Get this collection as a typemap that can be used in PHP's \SoapClient
-     * 
+     *
      * @return array
      */
     public function getTypemap()
     {
-        $typemap = array();
+        $typemap = [];
 
         foreach ($this->converters as $converter) {
             $typemap[] = array(

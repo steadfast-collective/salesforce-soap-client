@@ -29,7 +29,7 @@ class Field
     protected $precision;
     protected $relationshipName;
     protected $relationshipOrder;
-    protected $referenceTo = array();
+    protected $referenceTo = [];
     protected $restrictedPicklist;
     protected $scale;
     protected $soapType;

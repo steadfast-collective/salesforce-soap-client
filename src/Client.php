@@ -53,7 +53,7 @@ class Client extends AbstractHasDispatcher implements ClientInterface
      *
      * @var array
      */
-    protected $types = array();
+    protected $types = [];
 
     /**
      * Login result
@@ -457,7 +457,7 @@ class Client extends AbstractHasDispatcher implements ClientInterface
      */
     protected function createSoapVars(array $objects, $type)
     {
-        $soapVars = array();
+        $soapVars = [];
 
         foreach ($objects as $object) {
 
@@ -544,7 +544,7 @@ class Client extends AbstractHasDispatcher implements ClientInterface
      * @return array | \Traversable An empty array or a result object, such
      *                              as QueryResult, SaveResult, DeleteResult.
      */
-    protected function call($method, array $params = array())
+    protected function call($method, array $params = [])
     {
         $this->init();
 
@@ -575,7 +575,7 @@ class Client extends AbstractHasDispatcher implements ClientInterface
 
         // No result e.g. for logout, delete with empty array
         if (!isset($result->result)) {
-            return array();
+            return [];
         }
 
 //        $this->dispatch(
@@ -605,7 +605,7 @@ class Client extends AbstractHasDispatcher implements ClientInterface
      */
     protected function setSoapHeaders(array $headers)
     {
-        $soapHeaderObjects = array();
+        $soapHeaderObjects = [];
         foreach ($headers as $key => $value) {
             $soapHeaderObjects[] = new \SoapHeader(self::SOAP_NAMESPACE, $key, $value);
         }
@@ -706,4 +706,3 @@ class Client extends AbstractHasDispatcher implements ClientInterface
         return $sObject;
     }
 }
-

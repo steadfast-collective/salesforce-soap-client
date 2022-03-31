@@ -242,7 +242,7 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
         return $this;
     }
 
-    protected function createObjectMock($object, array $values = array())
+    protected function createObjectMock($object, array $values = [])
     {
         foreach ($values as $key => $value) {
             $this->setProperty($object, $key, $value);
@@ -251,7 +251,7 @@ No such column 'aId' on entity 'Account'. If you are attempting to use a custom 
         return $object;
     }
 
-    protected function getResultMock($object, array $values = array())
+    protected function getResultMock($object, array $values = [])
     {
         $mock = $this->createObjectMock($object, $values);
 

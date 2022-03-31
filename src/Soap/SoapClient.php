@@ -26,7 +26,7 @@ class SoapClient extends \SoapClient
 
             $soapTypes = $this->__getTypes();
             foreach ($soapTypes as $soapType) {
-                $properties = array();
+                $properties = [];
                 $lines = explode("\n", $soapType);
                 if (!preg_match('/struct (.*) {/', $lines[0], $matches)) {
                     continue;

@@ -50,7 +50,7 @@ class BulkSaverTest extends TestCase
 
     public function testDelete()
     {
-        $tasks = array();
+        $tasks = [];
         for ($i = 0; $i < 202; $i++) {
             $task = new \stdClass();
             $task->Id = $i+1;

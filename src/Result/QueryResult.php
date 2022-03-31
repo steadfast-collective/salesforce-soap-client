@@ -9,7 +9,7 @@ class QueryResult
 {
     protected $done;
     protected $queryLocator;
-    protected $records = array();
+    protected $records = [];
     protected $size;
 
     /**
